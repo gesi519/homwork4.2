@@ -14,6 +14,7 @@ extern std :: map<std :: string, ExprType> primitives1;
 extern std :: map<std :: string, ExprType> primitives2;
 
 Value Let::eval(Assoc &env) { // let expression
+    std::cout<<1;
     Assoc new_env = env;
     int size = bind.size();
     for(int i = 0;i < size;++i) {
@@ -94,6 +95,27 @@ Value Apply::eval(Assoc &e) { // for function calling
                         return Exit().eval(e_tmp);
                     }else if(primitives[var -> x] == E_VOID) {
                         return MakeVoid().eval(e_tmp);
+                    }
+                }
+            }else if(reserved_words[var -> x]) {
+                if(var->x == "lambda") {
+                    if(size != 3) {
+                        throw RuntimeError("");
+                    }
+
+                }else if(var->x == "begin") {
+
+                }else if(var->x == "let") {
+                    if(size != 3) {
+                        throw RuntimeError("");
+                    }
+                }else if(var->x == "letrec") {
+                    if(size != 3) {
+                        throw RuntimeError("");
+                    }
+                }else if(var->x == "if") {
+                    if(size != 3) {
+                        throw RuntimeError("");
                     }
                 }
             }
